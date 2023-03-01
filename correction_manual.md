@@ -1,6 +1,6 @@
 # Correction Manual
 
-## Readme
+## How to
 The requirements and how to run the framework is described [here](README.md).
 
 ## Yearly Updates
