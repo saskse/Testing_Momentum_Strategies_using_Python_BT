@@ -66,4 +66,4 @@ The executive education participants correction can be started by performing the
 4. Press "Run the Python-file" button in the dir_wb file. Execution may take a few hours.
 
 ## Deliverables
-The written thesis can be found [here](deliverables/Bachelor_Thesis_Saskia_Senn.pdf) while a correction manual can be found [here](correction_manual.md).
+The written thesis can be found [here](deliverables/Bachelor_Thesis_Saskia_Senn.pdf) while a correction manual can be found [here](deliverables/correction_manual.md).
