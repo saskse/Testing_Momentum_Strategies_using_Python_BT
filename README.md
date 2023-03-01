@@ -41,7 +41,7 @@ Open a new Visual Studio Code prompt window on Windows (on Linux and MacOS a nor
          - IA_Output_empty_wb.xlsx
          - IA_3_HS22_shifted.xlsx (To calculate the monthly return consistently the data needs to be shifted by one month, starting one week earlier ([see Table 2](deliverables/Bachelor_Thesis_Saskia_Senn.pdf#page=24))
     - `output/`: folder where the IA Output will get exported to
-    - `files_for_correction_stud/`: folder with all the submitted files
+    - `files_for_correction_stud/`: folder where all the submitted files can be stored
 - `correction_manual`: a manual for the *Headcoach*, who is responsible for correcting the *Involving Activity*, is provided
 
 ## Running the Framework
