@@ -36,7 +36,10 @@ Open a new Visual Studio Code prompt window on Windows (on Linux and MacOS a nor
         - `dir_wb.py`
         - `correction_wb.py`
 - `data/`: main data directory
-    - `input/`: folder that holds the empty solution and IA Output file
+    - `input/`: folder that holds:
+         - IA_Output_empty_stud.xlsx
+         - IA_Output_empty_wb.xlsx
+         - IA_3_HS22_shifted.xlsx (To calculate the monthly return consistently the data needs to be shifted by one month, starting one week earlier ([see Table 2](deliverables/Saskia_Senn_BT.pdf#page=23))
     - `output/`: folder where the IA Output will get exported to
     - `files_for_correction_stud/`: folder with all the submitted files
 - `correction_manual`: a manual for the *Headcoach*, who is responsible for correcting the *Involving Activity*, is provided
