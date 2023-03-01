@@ -25,7 +25,7 @@ Open a new Visual Studio Code prompt window on Windows (on Linux and MacOS a nor
 1. Sign in with GitHub in the Visual Studio Code Application
 2. Use the Clone Repository button in the Source Control view (available when you have no folder open).
 3. Insert Repository-URL: https://github.com/saskse/Testing_Momentum_Strategies_using_Python_BT.git
-4. Chose a folder as Repository-target
+4. Choose a folder as Repository-target
 
 ## Directory Structure
 - `code`: directory containing source code of the correction
