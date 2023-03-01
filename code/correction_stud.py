@@ -45,6 +45,7 @@ def correction(filenames):
     # Import directory and stud_number from dir_stud.py
     from dir_stud import dir
     from dir_stud import stud_number
+    path = 'C:\\Users\\senns\\Documents\\Uni_Stuff\\2022\\Bachelorarbeit\\Final_Take\\Code_Stud\\Testing_Momentum_Strategies_using_Python_BT\\data\\input'
     # Read Student File
     wb_stud = openpyxl.load_workbook(filenames, data_only=True) #read excel file
     olat_name = dir.split("_")[-1]
@@ -98,7 +99,7 @@ def correction(filenames):
     
 
     # Create Solution File
-    wb_sol = openpyxl.load_workbook('C:\\Users\\senns\\Documents\\Uni_Stuff\\2022\\Bachelorarbeit\\Final_Take\\IA_3_HS22.xlsx', data_only=True)
+    wb_sol = openpyxl.load_workbook(path + '\\IA_3_HS22.xlsx', data_only=True)
     ws_grunddaten_sol = wb_sol["Grunddaten"]
     df_grunddaten_sol = load_workbook_range("C10:U261", ws_grunddaten_sol, with_index=True, index_name="Datum ")
 
@@ -236,7 +237,7 @@ def correction(filenames):
     points_stud_5 = points_5 - points_5/27*false_count #bc 27 measurements
 
     #Generate IA Output
-    wb_IA_output = openpyxl.load_workbook('C:\\Users\\senns\\Documents\\Uni_Stuff\\2022\\Bachelorarbeit\\Final_Take\\IA_Output_stud.xlsx', data_only=True)
+    wb_IA_output = openpyxl.load_workbook(path + '\\IA_Output_stud.xlsx', data_only=True)
     ws_IA_output = wb_IA_output["IA Output"]
 
     list_max_points = [points_1_1,points_2_1,points_2_2,points_3_1,points_3_2,points_4,points_5]
