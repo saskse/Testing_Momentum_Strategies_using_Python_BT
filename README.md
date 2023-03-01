@@ -38,6 +38,7 @@ Open a new Visual Studio Code prompt window on Windows (on Linux and MacOS a nor
 - `data/`: main data directory
     - `input/`: folder that holds the empty solution and IA Output file
     - `output/`: folder where the IA Output will get exported to
+    - `files_for_correction_stud/`: folder with all the submitted files
 - `correction_manual`: a manual for the *Headcoach*, who is responsible for correcting the *Involving Activity*, is provided
 
 ## Running the Framework
