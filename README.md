@@ -45,16 +45,22 @@ Open a new Visual Studio Code prompt window on Windows (on Linux and MacOS a nor
 The correction framework allows for two different execution modes: dir_stud, the user will run the correction for the *Involving Acitvity* of the student. In dir_wb, the correction will run for the executive education participants.
 
 ### Student correction
-The student correction can be started by performing the following two steps:
+The student correction can be started by performing the following three steps:
 
-1. Adjust the path in both, the dir_stud and correction_stud file.
-2. Press "Run the Python-file" button in the dir_stud file. Execution may take a few hours. Do not force quit the application in case this happens, as all progress will be lost.
+1. Download the folder with the submitted files from OLAT and save it on the computer.
+2. Adjust the path in both, the dir_stud and correction_stud file.
+    - dir_stud: path to where the submitted files from OLAT are saved
+    - correction_stud: path to where the input data is saved
+4. Press "Run the Python-file" button in the dir_stud file. Execution may take a few hours. Do not force quit the application in case this happens, as all progress will be lost.
 
 ### Executive education participants correction
-The executive education participants correction can be started by performing the following two steps:
+The executive education participants correction can be started by performing the following three steps:
 
-1. Adjust the path in both, the dir_wb and correction_wb file.
-2. Press "Run the Python-file" button in the dir_wb file. Execution may take a few hours. Do not force quit the application in case this happens, as all progress will be lost.
+1. Download the folder with the submitted files from OLAT and save it on the computer.
+2. Adjust the path in both, the dir_wb and correction_wb file.
+    - dir_wb: path to where the submitted files from OLAT are saved
+    - correction_wb: path to where the input data is saved
+4. Press "Run the Python-file" button in the dir_wb file. Execution may take a few hours. Do not force quit the application in case this happens, as all progress will be lost.
 
 ## Deliverables
 The written thesis can be found [here](deliverables/Saskia_Senn_BT.pdf) while a correction manual can be found [here](correction_manual.md).
