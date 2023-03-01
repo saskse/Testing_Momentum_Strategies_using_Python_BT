@@ -16,7 +16,7 @@ The aim of this thesis is to develop an automated correction tool using the Pyth
 
 ### Requirements
 - Python 3.10.5 or newer 
-- Visual Studo Code 1.74.3 or newer
+- Visual Studio Code 1.74.3 or newer
 - Office 2021 or newer
 
 ### Setting up the Repository 
