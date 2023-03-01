@@ -17,7 +17,7 @@ The aim of this thesis is to develop an automated correction tool using the Pyth
 - Python 3.10.5 or newer 
 - Visual Studio Code 1.74.3 or newer
 - GitHub Pull Requests and Issues
-- Office 2021 or newer
+- Microsoft Office 2021 or newer
 
 ### Setting up the Repository 
 Open a new Visual Studio Code prompt window on Windows (on Linux and MacOS a normal shell will do). Set-up the project repository by doing the following:
