@@ -38,7 +38,7 @@ Open a new Visual Studio Code prompt window on Windows (on Linux and MacOS a nor
 - `data/`: main data directory
     - `input/`: folder that holds the empty solution and IA Output file
     - `output/`: folder where the IA Output will get exported to
-- `correction manual`: a manual for the *Headcoach*, who is responsible for correcting the *Involving Activity*, is provided
+- `correction_manual`: a manual for the *Headcoach*, who is responsible for correcting the *Involving Activity*, is provided
 
 ## Running the Framework
 The correction framework allows for two different execution modes: dir_stud, the user will run the correction for the *Involving Acitvity* of the student. In dir_wb, the correction will run for the executive education participants.
