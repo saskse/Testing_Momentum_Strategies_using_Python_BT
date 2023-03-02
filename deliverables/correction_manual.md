@@ -6,7 +6,7 @@ The requirements and how to run the framework is described [here](/README.md).
 ## Yearly Modifications
 The following adjustments are necessery every year, regardless if there are further changes in the *Involving Activity*:
 1.	Update return data, shares and dates
-    - Discuss the time period and number of shares with the lecturer
+    - Discuss the adaptations of the time period and number of shares with the lecturer
         - When a bigger or smaller time period is used, or more or less shares are considered, it may be necessary to make adjustments when saving the following variables:
 
           ```bash
@@ -20,10 +20,10 @@ The following adjustments are necessery every year, regardless if there are furt
             Note: This adjustment must be completed for every worksheet.
     - Pull data from datastream
          - An instruction for loading data from datastream is provided in the "TC Team > Knowhow" folder
-3.	Update the assignment file and the excel file that needs to be solved
+2.	Update the assignment file and the excel file that needs to be solved
 
 ## Changes in the assignment
-If there is a change in the points awarded per exercise or the riskfree rate changes, these variables can be easily adjusted in the code to reflect the new values:
+If there is a change in the points rewarded per exercise or the riskfree rate changes, these variables can be easily adjusted in the code to reflect the new values:
 ```bash
     riskfree = 0
 
@@ -58,7 +58,7 @@ Similarly, in the event of any changes made to the layout of the ”Eingabe der 
     aktien_ls = ws_eingabe_der_daten.cell(row=28, column=12).value
 ```
 
-### *IA Output*
+### IA Output
 For generating the IA Output and in the case that there has been an update to the layout of the IA Output Excel file, the corresponding arguments `row=` and `column=` in the code must be modified to match the new layout:
 ```bash
 ws_IA_output.cell(row=6+stud_number, column=3).value = matriculation_number
