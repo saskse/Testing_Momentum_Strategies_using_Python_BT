@@ -1,7 +1,7 @@
 # Correction Manual
 
 ## How to
-The requirements and how to run the framework is described [here](README.md).
+The requirements and how to run the framework is described [here](/README.md).
 
 ## Yearly Modifications
 The following adjustments are necessery every year, regardless if there are further changes in the *Involving Activity*:
