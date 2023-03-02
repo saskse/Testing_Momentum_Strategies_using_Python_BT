@@ -37,9 +37,10 @@ If there is a change in the points rewarded per exercise or the riskfree rate ch
 ```
 In the event of any modifications to an exercise, it is necessary to update the code to align with the revised requirements.
 
-## Changes in the sheet layout
+## Changes in the file layout
+### File: Involving Activity
 
-### Sheet 1: ”Einleitung”
+#### Sheet 1: ”Einleitung”
 In the event of a change in the layout of the ”Einleitung” sheet, it is important to note that the location of data within the sheet may be affected. As a result, it may be necessary to adjust the `row=` and `column=` arguments while saving the following variables:
 ```bash
     first_name = ws_einleitung.cell(row=11, column=5).value
@@ -48,7 +49,7 @@ In the event of a change in the layout of the ”Einleitung” sheet, it is impo
 ```
 This will allow the code to access and manipulate the relevant data in the updated sheet layout.
 
-### Sheet 2: ”Eingabe der Daten”
+#### Sheet 2: ”Eingabe der Daten”
 Similarly, in the event of any changes made to the layout of the ”Eingabe der Daten” sheet, it may be necessary to adjust the `row=` and `column=` arguments while saving the following variables:
 ```bash
     lookback_period_month = ws_eingabe_der_daten.cell(row=11, column=12).value
@@ -58,7 +59,8 @@ Similarly, in the event of any changes made to the layout of the ”Eingabe der 
     aktien_ls = ws_eingabe_der_daten.cell(row=28, column=12).value
 ```
 
-### IA Output
+### File: IA Output
+#### Sheet: IA Output
 For generating the IA Output and in the case that there has been an update to the layout of the IA Output Excel file, the corresponding arguments `row=` and `column=` in the code must be modified to match the new layout:
 ```bash
     ws_IA_output.cell(row=6+stud_number, column=3).value = matriculation_number
