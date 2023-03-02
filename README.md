@@ -54,7 +54,8 @@ The student correction can be started by performing the following three steps:
 2. Adjust the path in both, the `dir_stud` and `correction_stud` file.
     - `dir_stud`: path to where the submitted files from OLAT are saved
     - `correction_stud`: path to where the input data is saved
-4. Press "Run the Python-file" button in the `dir_stud` file. Execution may take a few hours.
+4. Press "Run the Python-file" button in the `dir_stud` file. 
+Note: Execution may take a few hours.
 
 ### Executive education participants correction
 The executive education participants correction can be started by performing the following three steps:
@@ -63,7 +64,8 @@ The executive education participants correction can be started by performing the
 2. Adjust the path in both, the `dir_wb` and `correction_wb` file.
     - `dir_wb`: path to where the submitted files from OLAT are saved
     - `correction_wb`: path to where the input data is saved
-4. Press "Run the Python-file" button in the `dir_wb` file. Execution may take a few hours.
+4. Press "Run the Python-file" button in the `dir_wb` file.
+Note: Execution may take a few hours.
 
 ## Deliverables
 The written thesis can be found [here](deliverables/Bachelor_Thesis_Saskia_Senn.pdf) while a correction manual can be found [here](deliverables/correction_manual.md).
