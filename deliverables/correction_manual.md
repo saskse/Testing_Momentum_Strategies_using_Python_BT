@@ -61,7 +61,7 @@ Similarly, in the event of any changes made to the layout of the ”Eingabe der 
 ### IA Output
 For generating the IA Output and in the case that there has been an update to the layout of the IA Output Excel file, the corresponding arguments `row=` and `column=` in the code must be modified to match the new layout:
 ```bash
-ws_IA_output.cell(row=6+stud_number, column=3).value = matriculation_number
+    ws_IA_output.cell(row=6+stud_number, column=3).value = matriculation_number
     ws_IA_output.cell(row=6+stud_number, column=4).value = first_name
     ws_IA_output.cell(row=6+stud_number, column=5).value = last_name
     ws_IA_output.cell(row=6+stud_number, column=6).value = points_stud
