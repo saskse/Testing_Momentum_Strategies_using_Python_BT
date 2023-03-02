@@ -3,7 +3,7 @@
 ## How to
 The requirements and how to run the framework is described [here](README.md).
 
-## Yearly Updates
+## Yearly Modifications
 The following adjustments are necessery every year, regardless if there are further changes in the *Involving Activity*:
 1.	Update return data, shares and dates
     - Discuss the time period and number of shares with the lecturer
