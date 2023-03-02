@@ -55,6 +55,7 @@ The student correction can be started by performing the following three steps:
     - `dir_stud`: path to where the submitted files from OLAT are saved
     - `correction_stud`: path to where the input data is saved
 4. Press "Run the Python-file" button in the `dir_stud` file. 
+
 Note: Execution may take a few hours.
 
 ### Executive education participants correction
@@ -65,6 +66,7 @@ The executive education participants correction can be started by performing the
     - `dir_wb`: path to where the submitted files from OLAT are saved
     - `correction_wb`: path to where the input data is saved
 4. Press "Run the Python-file" button in the `dir_wb` file.
+
 Note: Execution may take a few hours.
 
 ## Deliverables
