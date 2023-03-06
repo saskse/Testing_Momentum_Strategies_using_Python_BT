@@ -6,7 +6,7 @@ import glob
 import correction_stud
 
 #set path
-path = 'C:\\Users\\senns\\Documents\\Uni_Stuff\\2022\\Bachelorarbeit\\Final_Take\\Code_Stud\\Testing_Momentum_Strategies_using_Python_BT\\data\\input\\files_for_correction_stud\\ita_IA_3_2022-12-23T20-12-29_674'
+path = 'C:\\Users\\senns\\Documents\\Uni_Stuff\\2022\\Bachelorarbeit\\Final_Take\\Testing_Momentum_Strategies_using_Python_BT\\files_for_correction'
 stud_number = 0
 
 #set up directory
