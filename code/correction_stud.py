@@ -18,7 +18,7 @@ from openpyxl import load_workbook
 from openpyxl.utils import get_column_interval
 import re
 
-
+#def load workbook range function
 def load_workbook_range(range_string, ws, with_header=True, with_index=False, index_name=None):
     col_start, col_end = re.findall("[A-Z]+", range_string)
 
@@ -38,23 +38,30 @@ def load_workbook_range(range_string, ws, with_header=True, with_index=False, in
 
     return df 
 
+#def nthRoot function
 def nthRoot(x, n):
 	return x**(1/float(n))
-    
+
+#def corretion function
 def correction(filenames):
     # Import directory and stud_number from dir_stud.py
     from dir_stud import dir
     from dir_stud import stud_number
+    #set path
     path = 'C:\\Users\\senns\\Documents\\Uni_Stuff\\2022\\Bachelorarbeit\\Final_Take\\Code_Stud\\Testing_Momentum_Strategies_using_Python_BT\\data\\input'
+    
+    
     # Read Student File
-    wb_stud = openpyxl.load_workbook(filenames, data_only=True) #read excel file
-    olat_name = dir.split("_")[-1]
-    ws_einleitung = wb_stud["Einleitung"]
+    wb_stud = openpyxl.load_workbook(filenames, data_only=True) #load excel into Python
+    olat_name = dir.split("_")[-1] #save OLAT name from dir path
+    ws_einleitung = wb_stud["Einleitung"] #save sheet "Einleitung"
+    #save variables from sheet "Einleitung"
     first_name = ws_einleitung.cell(row=11, column=5).value
     last_name = ws_einleitung.cell(row=13, column=5).value
     matriculation_number = ws_einleitung.cell(row=15, column=5).value
 
-    ws_eingabe_der_daten = wb_stud["Eingabe der Daten"]
+    ws_eingabe_der_daten = wb_stud["Eingabe der Daten"] #save sheet "Eingabe der Daten"
+    #save variables from sheet "Eingabe der Daten"
     lookback_period_month = ws_eingabe_der_daten.cell(row=11, column=12).value
     lookback_period = int(lookback_period_month.split(" ",1)[0])
     holding_period_month = ws_eingabe_der_daten.cell(row=13, column=12).value
@@ -63,6 +70,7 @@ def correction(filenames):
     aktien_lo = ws_eingabe_der_daten.cell(row=26, column=12).value
     aktien_ls = ws_eingabe_der_daten.cell(row=28, column=12).value
     
+    #define variables
     number_of_firms = 18
     time_period = 250
 
@@ -99,7 +107,8 @@ def correction(filenames):
     
 
     # Create Solution File
-    wb_sol = openpyxl.load_workbook(path + '\\IA_3_HS22.xlsx', data_only=True)
+    wb_sol = openpyxl.load_workbook(path + '\\IA_3_HS22.xlsx', data_only=True) #load empty solution file
+    #save worksheets and load workbook range of solution file
     ws_grunddaten_sol = wb_sol["Grunddaten"]
     df_grunddaten_sol = load_workbook_range("C10:U261", ws_grunddaten_sol, with_index=True, index_name="Datum ")
 
@@ -120,38 +129,40 @@ def correction(filenames):
     df_gesamtrendite_sr_sol = load_workbook_range("C11:F20", ws_gesamtrendite_sr_sol, with_index=True) 
     
 
-
     #Sheet monatliche Rendite
-    df_berechnung_mon_renditen_sol = df_grunddaten_sol.pct_change().round(4)
-    df_berechnung_mon_renditen_sol = df_berechnung_mon_renditen_sol.iloc[1: , :]
-    df_berechnung_mon_renditen_stud = df_berechnung_mon_renditen_stud.astype(float).round(4)
-    df_delta_berechnung_mon_renditen = df_berechnung_mon_renditen_stud == df_berechnung_mon_renditen_sol
-    false_count = (~df_delta_berechnung_mon_renditen).sum().sum()
-    points_stud_1_1 = points_1_1 - points_1_1/number_of_firms/time_period*false_count
+    df_berechnung_mon_renditen_sol = df_grunddaten_sol.pct_change().round(4) #calculate monthly return and round to 4 decimal points
+    df_berechnung_mon_renditen_sol = df_berechnung_mon_renditen_sol.iloc[1: , :] #get rid of first row bc of shifted "Grunddaten" from solution file
+    df_berechnung_mon_renditen_stud = df_berechnung_mon_renditen_stud.astype(float).round(4) #convert values to a float and round to 4 decimal points
+    df_delta_berechnung_mon_renditen = df_berechnung_mon_renditen_stud == df_berechnung_mon_renditen_sol #built delta of student and solution dataframe
+    false_count = (~df_delta_berechnung_mon_renditen).sum().sum() #count values in delta dataframe that are not equal and sum it up
+    points_stud_1_1 = points_1_1 - points_1_1/number_of_firms/time_period*false_count #set points for first exercise
 
-    df_berechnung_mon_renditen_add_one_sol = df_berechnung_mon_renditen_sol + 1
-    df_berechnung_mon_renditen_stud_add_one = df_berechnung_mon_renditen_stud + 1
+    df_berechnung_mon_renditen_add_one_sol = df_berechnung_mon_renditen_sol + 1 #plus one for geo medium
+    df_berechnung_mon_renditen_stud_add_one = df_berechnung_mon_renditen_stud + 1 #plus one for geo medium
+
 
     #Sheet Ranking obere tabelle Rendite gemäss lookback period
-    if mittel_ranking == "geometrische Mittel":
-        df_ranking_sol_lb = nthRoot((df_berechnung_mon_renditen_stud_add_one).rolling(window=lookback_period).apply(np.prod, raw=True),lookback_period) - 1
+    if mittel_ranking == "geometrische Mittel": #check if student choose geometric or arithmetic mean
+        df_ranking_sol_lb = nthRoot((df_berechnung_mon_renditen_stud_add_one).rolling(window=lookback_period).apply(np.prod, raw=True),lookback_period) - 1 #calculate geometric mean
     else: 
-        df_ranking_sol_lb = df_berechnung_mon_renditen_stud.rolling(window=lookback_period).mean()
-    df_delta_ranking_lb = df_ranking_sol_lb.iloc[lookback_period-1:].round(4) == df_ranking_stud_lb.iloc[lookback_period-1:].astype(float).round(4)
+        df_ranking_sol_lb = df_berechnung_mon_renditen_stud.rolling(window=lookback_period).mean() #calculate arithmetic mean
+    df_delta_ranking_lb = df_ranking_sol_lb.iloc[lookback_period-1:].round(4) == df_ranking_stud_lb.iloc[lookback_period-1:].astype(float).round(4) #get rid of empty rows using iloc
     false_count = (~df_delta_ranking_lb).sum().sum()
     points_stud_2_1 = points_2_1-(points_2_1/((number_of_firms*time_period)-((lookback_period-1)*number_of_firms)))*false_count
     
+
     #Sheet Ranking untere Tabelle Ranking bilden
-    df_ranking_sol_rank = df_ranking_stud_lb.rank(axis=1, ascending=False, method='dense')
+    df_ranking_sol_rank = df_ranking_stud_lb.rank(axis=1, ascending=False, method='dense') #built ranking
     df_delta_ranking_rank = df_ranking_sol_rank.iloc[lookback_period-1:] == df_ranking_stud_rank.iloc[lookback_period-1:]
     false_count = (~df_delta_ranking_rank).sum().sum()
     points_stud_2_2 = points_2_2-(points_2_2/((number_of_firms*time_period)-((lookback_period-1)*number_of_firms)))*false_count
 
+
     #Kauf- & Verkaufsignal lo, long-only Portfolio
-    df_kauf_verkaufsignal_lo_stud = df_kauf_verkaufsignal_lo_stud.fillna(False)
-    if df_kauf_verkaufsignal_lo_stud.iloc[lookback_period+holding_period-2].sum() == False: #when stud made a backward test
+    df_kauf_verkaufsignal_lo_stud = df_kauf_verkaufsignal_lo_stud.fillna(False) #fill empty cells with false
+    if df_kauf_verkaufsignal_lo_stud.iloc[lookback_period+holding_period-2].sum() == False: #when student made a backward test
         pass
-    else: df_kauf_verkaufsignal_lo_stud = df_kauf_verkaufsignal_lo_stud.shift(periods=holding_period)
+    else: df_kauf_verkaufsignal_lo_stud = df_kauf_verkaufsignal_lo_stud.shift(periods=holding_period) #when student did, shift values by holding period
     df_berechnung_mon_renditen_add_one_sol = df_berechnung_mon_renditen_stud_add_one.iloc[lookback_period-1:]
     df_kauf_verkaufsignal_lo_sol = df_kauf_verkaufsignal_lo_sol.iloc[lookback_period-1:]
     df_ranking_sol_rank_shifted = df_ranking_stud_rank.shift(periods=holding_period) #compare correct rank for calculating rolling return
@@ -162,6 +173,7 @@ def correction(filenames):
     df_delta_kauf_verkaufsignal_lo = df_kauf_verkaufsignal_lo_sol == df_kauf_verkaufsignal_lo_stud
     false_count = (~df_delta_kauf_verkaufsignal_lo).sum().sum()
     points_stud_3_1 = points_3_1-(points_3_1/((number_of_firms*time_period)-((holding_period+lookback_period-1)*number_of_firms)))*false_count
+
 
     #Kauf- & Verkaufsignal ls, long-short Portfolio
     df_kauf_verkaufsignal_ls_stud = df_kauf_verkaufsignal_ls_stud.fillna(False)
@@ -180,6 +192,7 @@ def correction(filenames):
     false_count = (~df_delta_kauf_verkaufsignal_ls).sum().sum()
     points_stud_3_2 = points_3_2-(points_3_2/((number_of_firms*time_period)-((holding_period+lookback_period-1)*number_of_firms)))*false_count
 
+
     #Monatliche Portfoliorenditen
     df_monatliche_portfoliorenditen_sol["Long-only"] = (nthRoot(1+df_kauf_verkaufsignal_lo_stud.mean(axis=1),holding_period)-1).round(4)
     df_monatliche_portfoliorenditen_sol["Long-Short"] = (nthRoot(1+df_kauf_verkaufsignal_ls_stud.mean(axis=1),holding_period)-1).round(4)
@@ -195,6 +208,7 @@ def correction(filenames):
     df_monatliche_portfoliorenditen_sol["Buy and Hold 1+r"] = df_monatliche_portfoliorenditen_sol["Buy and Hold"]+1
 
     df_monatliche_portfoliorenditen_sol = df_monatliche_portfoliorenditen_sol.iloc[lookback_period+holding_period-1:]
+
 
     #Gesamtrendite und SR
     monatl_arithm_durchschnittsrendite_sol_lo = df_monatliche_portfoliorenditen_stud["Long-only"].iloc[lookback_period+holding_period-1:].mean()
@@ -236,6 +250,7 @@ def correction(filenames):
     false_count = (~df_delta_gesamtrendite_sr).sum().sum()
     points_stud_5 = points_5 - points_5/27*false_count #bc 27 measurements
 
+
     #Generate IA Output
     wb_IA_output = openpyxl.load_workbook(path + '\\IA_Output_stud.xlsx', data_only=True)
     ws_IA_output = wb_IA_output["IA Output"]
@@ -249,7 +264,7 @@ def correction(filenames):
     ws_IA_output.cell(row=6+stud_number, column=5).value = last_name
     ws_IA_output.cell(row=6+stud_number, column=6).value = points_stud
     ws_IA_output.cell(row=6+stud_number, column=7).value = olat_name
-    if points_stud >= max_points*0.4: #passing l
+    if points_stud >= max_points*0.4: #passing limit
         ws_IA_output.cell(row=6+stud_number, column=8).value = '1' #means passed
     else: ws_IA_output.cell(row=6+stud_number, column=8).value = '0' #means failed
     ws_IA_output.cell(row=6+stud_number, column=10).value = points_stud_1_1
