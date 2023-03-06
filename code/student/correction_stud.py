@@ -1,8 +1,16 @@
 # Python library imports
+from ast import Return
 import math 
+from fileinput import close
+from importlib.machinery import FrozenImporter
 from importlib.resources import path
+from multiprocessing.sharedctypes import Value
 import os
-
+from queue import Empty
+from sqlite3 import Row
+from tkinter import E
+from tkinter.messagebox import YES
+from tkinter.tix import COLUMN
 import pandas as pd
 import numpy as np
 
@@ -10,8 +18,11 @@ import openpyxl     #library
 from statistics import variance
 from statistics import stdev
 from scipy.stats import gmean
-import numpy as np 
+import numpy as np #import mean
+from openpyxl.styles import PatternFill, Border, Side, Alignment, Protection, Font
 import os
+import xlwings as xw
+from xlwings.utils import rgb_to_int
 
 
 from openpyxl import load_workbook
@@ -108,7 +119,7 @@ def correction(filenames):
     
 
     # Create Solution File
-    wb_sol = openpyxl.load_workbook(path + '\\input\\IA_3_HS22_shifted', data_only=True) #load empty solution file
+    wb_sol = openpyxl.load_workbook(path + '\\input\\IA_3_HS22_shifted.xlsx', data_only=True) #load empty solution file
     #save worksheets and load workbook range of solution file
     ws_grunddaten_sol = wb_sol["Grunddaten"]
     df_grunddaten_sol = load_workbook_range("C10:U261", ws_grunddaten_sol, with_index=True, index_name="Datum ")
@@ -198,10 +209,13 @@ def correction(filenames):
     df_monatliche_portfoliorenditen_sol["Long-only"] = (nthRoot(1+df_kauf_verkaufsignal_lo_stud.mean(axis=1),holding_period)-1).round(4)
     df_monatliche_portfoliorenditen_sol["Long-Short"] = (nthRoot(1+df_kauf_verkaufsignal_ls_stud.mean(axis=1),holding_period)-1).round(4)
     df_monatliche_portfoliorenditen_sol["Buy and Hold"] = (df_berechnung_mon_renditen_stud.mean(axis=1)).round(4)
+    print(df_monatliche_portfoliorenditen_sol)
+    print(df_monatliche_portfoliorenditen_stud)
+    
     df_monatliche_portfoliorenditen_stud = df_monatliche_portfoliorenditen_stud.astype(float)
     df_delta_monatliche_portfoliorenditen = df_monatliche_portfoliorenditen_sol.iloc[holding_period+lookback_period-1:] == df_monatliche_portfoliorenditen_stud.iloc[holding_period+lookback_period-1:].astype(float).round(4)
     false_count = (~df_delta_monatliche_portfoliorenditen).sum().sum()
-    points_stud_4 = points_4-(points_4/((3*number_of_firms)-((holding_period+lookback_period-1)*3)))*false_count
+    points_stud_4 = points_4-(points_4/(3*time_period-(holding_period+lookback_period-1)*3))*false_count
 
 
     df_monatliche_portfoliorenditen_sol["Long-only 1+r"] = df_monatliche_portfoliorenditen_sol["Long-only"]+1
