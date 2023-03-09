@@ -10,6 +10,7 @@ The aim of this thesis is to develop an automated correction tool using the Pyth
 - [Directory Structure](#directory-structure)
 - [Running the Framework](#running-the-framework)
 - [Deliverables](#deliverables)
+- [License](#license)
 
 ## Getting Started 
 
@@ -67,3 +68,6 @@ The executive education participants correction can be started by performing the
 
 ## Deliverables
 The written thesis can be found [here](deliverables/Bachelor_Thesis_Saskia_Senn.pdf) while a correction manual can be found [here](deliverables/correction_manual.md).
+
+## License
+All rights reserved to the Department of Banking and Finance, University of Zurich.
